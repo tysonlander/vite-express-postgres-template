@@ -1,6 +1,6 @@
 import express from 'express';
-import { Client } from '../entities/Client';
-import { Banker } from '../entities/Banker';
+import { Client } from '../models/Client';
+import { Banker } from '../models/Banker';
 
 const router = express.Router();
 

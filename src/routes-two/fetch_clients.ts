@@ -1,7 +1,7 @@
 import express from 'express';
-import { Banker } from '../entities/Banker';
+import { Banker } from '../models/Banker';
 import { createQueryBuilder } from 'typeorm';
-import { Client } from '../entities/Client';
+import { Client } from '../models/Client';
 
 const router = express.Router();
 

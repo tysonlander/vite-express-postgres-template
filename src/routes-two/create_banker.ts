@@ -1,5 +1,5 @@
 import express from 'express';
-import { Banker } from '../entities/Banker';
+import { Banker } from '../models/Banker';
 
 const router = express.Router();
 

@@ -1,6 +1,6 @@
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
-const userEntity = require('../entities/User');
+const userEntity = require('../models/User');
 
 // @desc      Get single user
 // @route     GET /api/v1/auth/users/:id
@@ -21,7 +21,7 @@ exports.getUsers = asyncHandler(async (req, res, next) => {
   // const user = await User.findById(req.params.id);
   const users = [
     {
-      first_name: 'John',
+      first_name: 'John2',
       last_name: 'Doe',
     },
   ];

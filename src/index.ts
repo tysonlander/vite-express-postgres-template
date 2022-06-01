@@ -1,8 +1,11 @@
 
-import { createConnection } from 'typeorm';
+const { createConnection } = require('typeorm');
 const path = require('path');
 const express = require('express');
 const dotenv = require('dotenv');
+// Load env vars
+dotenv.config({ path: './config/config.env' });
+
 const morgan = require('morgan');
 const colors = require('colors');
 const fileupload = require('express-fileupload');
@@ -17,20 +20,19 @@ const errorHandler = require('./middleware/error');
 // const connectDB = require('./config/db');
 // const pool = require("./db")
 
-// Load env vars
-dotenv.config({ path: './config/config.env' });
 
 // Entity
-import { Client } from './entities/Client';
-import { Banker } from './entities/Banker';
-import { Transaction } from './entities/Transaction';
-import { User } from './entities/User';
+import { Client } from './models/Client';
+import { Banker } from './models/Banker';
+import { Transaction } from './models/Transaction';
+import { User } from './models/User';
 
 
-// // Route
+// Route
 const company = require('./routes/company');
 const auth = require('./routes/auth');
-const usersRoute = require('./routes/users')
+const usersRouter = require('./routes/users')
+const examplesRouter = require('./routes/examples')
 
 
 const app = express();
@@ -86,7 +88,8 @@ const main = async () => {
 		// // Mount routers
 		// app.use('/api/v1/company', company);
 		// app.use('/api/v1/auth', auth);
-		app.use('/api/v1/users', usersRoute);
+		app.use('/api/v1/examples', examplesRouter);
+		app.use('/api/v1/users', usersRouter);
 		// app.use('/api/v1/courses', courses);
 		// app.use('/api/v1/reviews', reviews);
 
@@ -105,10 +108,16 @@ const main = async () => {
 		// Handle unhandled promise rejections
 		process.on('unhandledRejection', (err, promise) => {
 			// @ts-ignore
-			console.log(`Error: ${err.message}`.red);
+			console.log(`Error unhandledRejection: ${err.message}`.red);
 		// Close server & exit process
 		// server.close(() => process.exit(1));
 		});
+
+		// Handle uncaught exception
+		process.on('uncaughtException', (err) => {
+			// @ts-ignore
+			console.log(`Error uncaughtException: ${err.message}`.red);
+		})
 	} catch (error) {
 		console.error(error);
 		throw new Error('Unable to connect to db');

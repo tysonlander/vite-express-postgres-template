@@ -1,5 +1,6 @@
-# vite-express-postgres-template
+# Setup:
 
-To run:
-run 'npm install' to initailize the project dependancies
-run 'npm run dev' to start the front end and backend
+# To run:
+'npm install' to initialize the project dependencies
+
+'npm run dev' to start the front end and backend
